@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1725372470 source:c:\users\mohse\desktop\sasyoucode\day02\mini-projet\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
