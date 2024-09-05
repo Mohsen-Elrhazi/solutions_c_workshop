@@ -1,91 +1,178 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>  // Pour strcasecmp
 
-
-
-int main()
-{
-    char Titre[20][20];
-    char Auteur[20][20];
-    float Prix[20];
-    int Quantite[20];
-
-    int nbrlivres, i;
-    char titreliv[40];
-
-    printf("entrer nombre de livres:");
-    scanf("%d",&nbrlivres);
 
     /* Ajouter un livre au stock */
-    for(i=0;i<nbrlivres;i++){
+ void Ajouter(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int nbrlivres){
+     int i;
+     for(i=0;i<nbrlivres;i++){
         printf("entrer les infos de livre: %d\n",i+1);
-        printf("entrer le titre: ");
+        printf("Entrer le titre: ");
         scanf("%s",Titre[i]);
-        printf("entrer l'auteur: ");
+        printf("Entrer l'auteur: ");
         scanf("%s",Auteur[i]);
-        printf("entrer le prix: ");
+        printf("Entrer le prix: ");
         scanf("%f",&Prix[i]);
-        printf("entrer le Quantite: ");
+        printf("Entrer la quantite: ");
         scanf("%d",&Quantite[i]);
-    }
 
-    /* afficher tous les livres disponibles */
-    for(i=0;i<nbrlivres;i++){
+
+    }
+}
+
+/* afficher tous les livres disponibles */
+void Afficher(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int nbrlivres){
+    int i;
+    if(nbrlivres==0)
+        printf("Aucun livre disponible.\n");
+    else{
+        for(i=0;i<nbrlivres;i++){
         printf("les infos de livres %d sont:\n",i+1);
         printf("Titre:%s \n",Titre[i]);
         printf("Auteur:%s\n",Auteur[i]);
-        printf("Prix:%f\n",Prix[i]);
+        printf("Prix:%.2f\n",Prix[i]);
         printf("Quantite:%d\n",Quantite[i]);
-    }
-    /* modif la quantite d'un livre*/
-    printf("quel titre de livre vous voulez modifier: ");
-    scanf("%s",titreliv);
-    for(i=0;i<nbrlivres;i++){
-        if(strcmp(Titre[i],titreliv)==0){
-            printf("entrer la nouvelle quantite:");
-            scanf("%d",&Quantite[i]);
-            printf("la quantite a ete modifier\n");
         }
     }
 
-    /* afficher tous les livres disponibles */
-    for(i=0;i<nbrlivres;i++){
-        printf("les infos de livres %d sont:\n",i+1);
-        printf("Titre:%s \n",Titre[i]);
-        printf("Auteur:%s\n",Auteur[i]);
-        printf("Prix:%f\n",Prix[i]);
-        printf("Quantite:%d\n",Quantite[i]);
-    }
+}
 
-        /* Supprimer un live de stock */
-    printf("quel titre de livre vous voulez supprimer: ");
-    scanf("%s",titreliv);
-    int pos;
-    for(i=0;i<nbrlivres;i++){
-        if(strcmp(Titre[i],titreliv)==0){
+   /* Rechercher un livre par son titre. */
+  void RechercherLivre(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int nbrlivres,char titreliv[40]){
+      // char titreliv[30];
+       int i,pos,trv=0;;
+        for(i=0;i<nbrlivres;i++){
+        if(strcasecmp(Titre[i],titreliv)==0){
+                trv=1;
                 pos=i;
+                break;
+        }
+        }
+
+     if(trv==0){
+        printf("Livre non trouve.\n");
+     }
+     else{
+        printf("Livre est trouve.\n");
+      // Afficher(&Titre[pos],&Auteur[pos],&Prix[pos],&Quantite[pos],1);
+        printf("les infos de livres %d sont:\n",pos+1);
+        printf("Titre:%s \n",Titre[pos]);
+        printf("Auteur:%s\n",Auteur[pos]);
+        printf("Prix:%f\n",Prix[pos]);
+        printf("Quantite:%d\n",Quantite[pos]);
+     }
+
+}
+
+  /*Mettre à jour la quantité d'un livre */
+  void ModifierQuantite(char Titre[][40],int Quantite[],int nbrlivres,char titreliv[40]){
+     // char titreliv[30];
+      int i,pos,trv=0;
+
+    for(i=0;i<nbrlivres;i++){
+        if(strcasecmp(Titre[i],titreliv)==0){
+                pos=i;
+                trv=1;
+                break;
         }
     }
-    for(i=pos;i<nbrlivres;i++){
+     if(trv==0){
+        printf("Livre non trouve.\n");
+     }
+     else{
+         printf("entrer la nouvelle quantite:");
+         scanf("%d",&Quantite[pos]);
+         printf("la quantite a ete modifier\n");
+     }
+  }
+
+  /* Supprimer un live de stock */
+   void SupprimerLivre(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int *nbrlivres,char titreliv[40]){
+      // char titreliv[30];
+       int i,pos,trv=0;
+
+    for(i=0;i< *nbrlivres;i++){
+        if(strcasecmp(Titre[i],titreliv)==0){
+                pos=i;
+                trv=1;
+                break;
+        }
+    }
+
+    if (trv == 0) {
+        printf("Livre non trouve.\n");
+        return;
+    }
+    else{
+      for(i=pos;i< *nbrlivres;i++){
             strcpy(Titre[i],Titre[i+1]);
             strcpy(Auteur[i],Auteur[i+1]);
             Prix[i]=Prix[i+1];
             Quantite[i]=Quantite[i+1];
-    }
-    nbrlivres--;
+       }
+    (*nbrlivres)--;
     printf("le livre a ete supprimer\n");
-/* afficher tous les livres disponibles */
-    for(i=0;i<nbrlivres;i++){
-        printf("les infos de livres %d sont:\n",i+1);
-        printf("Titre:%s \n",Titre[i]);
-        printf("Auteur:%s\n",Auteur[i]);
-        printf("Prix:%f\n",Prix[i]);
-        printf("Quantite:%d\n",Quantite[i]);
     }
+   }
 
-    /* Nmbre total de livres */
-    printf("nombre total de livres est:%d",nbrlivres);
+   /* Nombre total de livres */
+   void NombreLivres(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int nbrlivres){
+    printf("nombre total de livres est:%d\n",nbrlivres);
+   }
 
+int main()
+{
+    char Titre[40][40];
+    char Auteur[40][40];
+    float Prix[40];
+    int Quantite[40];
+
+    int nbrlivres, i;
+    char titreliv[40];
+
+    int choix;
+
+    printf("entrer nombre de livres:");
+    scanf("%d",&nbrlivres);
+
+    while(1){
+        printf("\n---------------MENU---------------\n");
+        printf("\nQue souhaitez vous faire:\n");
+        printf("1:Ajouter un livre au stock\n");
+        printf("2:Afficher tous les livres disponibles\n");
+        printf("3:Rechercher un livre par son titre.\n");
+        printf("4:Mettre a jour la quantita d'un livre\n");
+        printf("5:Supprimer un livre du stock\n");
+        printf("6:Afficher le nombre total de livres en stock\n");
+        printf("7:Quitter le programme\n");
+        scanf("%d",&choix);
+        switch(choix){
+            case 1:Ajouter(Titre,Auteur,Prix,Quantite,nbrlivres);
+                  break;
+            case 2:Afficher(Titre,Auteur,Prix,Quantite,nbrlivres);
+                  break;
+            case 3:printf("quel titre de livre vous voulez rechercher: ");
+                   scanf("%s",titreliv);
+                   RechercherLivre(Titre,Auteur,Prix,Quantite,nbrlivres,titreliv);
+                  break;
+            case 4:printf("quel titre de livre vous voulez modifier: ");
+                   scanf("%s",titreliv);
+                   ModifierQuantite(Titre,Quantite,nbrlivres,titreliv);
+                  break;
+            case 5: printf("quel titre de livre vous voulez supprimer: ");
+                    scanf("%s",titreliv);
+                   SupprimerLivre(Titre,Auteur,Prix,Quantite,&nbrlivres,titreliv);
+                  break;
+            case 6:NombreLivres(Titre,Auteur,Prix,Quantite,nbrlivres);
+                  break;
+            case 7:printf("---------------Fin de programme1 !--------------- ");
+                 return 0;
+                  break;
+            default: printf("le type de choix est incorrect.\n");
+            break;
+        }
+    }
     return 0;
 }
