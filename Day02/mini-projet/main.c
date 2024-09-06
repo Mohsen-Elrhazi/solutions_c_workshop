@@ -6,17 +6,9 @@
 
 
 
-
 int main()
 {
-    char Titre[40][40];
-    char Auteur[40][40];
-    float Prix[40];
-    int Quantite[40];
-
-    int nbrlivres, i;
-    char titreliv[40];
-    int choix;
+    int i, choix;
 
     printf("entrer nombre de livres:");
     scanf("%d",&nbrlivres);

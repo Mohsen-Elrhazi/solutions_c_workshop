@@ -1,8 +1,17 @@
-// bibliotheque.c
-#include "bibliotheque.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "bibliotheque.h"
+
+
+// Définition des variables globales
+char Titre[40][40];
+char Auteur[40][40];
+float Prix[40];
+int Quantite[40];
+int nbrlivres;
+char titreliv[40];
 
 
  /*-----------Ajouter un livre au stock----------- */
@@ -121,22 +130,22 @@ void Afficher(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int
         for(i=0;i< nbrlivres;i++){
             for(j=i+1;j< nbrlivres;j++){
               if(strcasecmp(Titre[i],Titre[j])>0){
-                // Échange des titres
+                // Echange des titres
                 strcpy(helpTitre, Titre[i]);
                 strcpy(Titre[i], Titre[j]);
                 strcpy(Titre[j], helpTitre);
 
-                // Échange des auteurs
+                // Echange des auteurs
                 strcpy(helpAuteur, Auteur[i]);
                 strcpy(Auteur[i], Auteur[j]);
                 strcpy(Auteur[j], helpAuteur);
 
-                // Échange des prix
+                // Echange des prix
                 helpPrix = Prix[i];
                 Prix[i] = Prix[j];
                 Prix[j] = helpPrix;
 
-                // Échange des quantités
+                // Echange des quantités
                 helpQuantite = Quantite[i];
                 Quantite[i] = Quantite[j];
                 Quantite[j] = helpQuantite;
