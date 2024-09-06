@@ -1,6 +1,5 @@
-// bibliotheque.h
-#ifndef BIBLIOTHEQUE_H
-#define BIBLIOTHEQUE_H
+#ifndef CONTRAT_H
+#define CONTRAT_H
 
 
 typedef struct Contrat {
@@ -9,7 +8,6 @@ typedef struct Contrat {
     char adresse_email[50];
 } Contrat;
 
-// Déclarations des fonctions
 void Ajouter(Contrat *c, int n);
 void Afficher(Contrat *c, int *n);
 void modifier(Contrat *c, int *n, char *nom);

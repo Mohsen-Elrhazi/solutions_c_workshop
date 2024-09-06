@@ -1,4 +1,3 @@
-// bibliotheque.c
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -121,4 +120,3 @@ void trie(Contrat *c,int n){
     }
     printf("Les contrats sont tries.\n");
 }
-
