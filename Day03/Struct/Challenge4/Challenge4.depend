@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1725746963 source:c:\users\mohse\desktop\solutions_c_workshop\day03\struct\challenge4\main.c
+	<stdio.h>
+	<stdlib.h>
+
