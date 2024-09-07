@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "contrat.h"
+#include "Contrat.h"
 
+// Definition des variables globales
+ Contrat *c;
+ int n, choix;
+ char nom[30];
 
 /*-----------Ajouter un Contact-----------*/
 void Ajouter(Contrat *c,int n){

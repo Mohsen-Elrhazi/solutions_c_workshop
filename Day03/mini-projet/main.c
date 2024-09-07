@@ -2,13 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "contrat.h"
+#include "Contrat.h"
 
 int main()
 {
-    Contrat *c;
-    int n,choix;
-    char nom[30];
     printf("Entrer le nombre de contrats: ");
     scanf("%d",&n);
     c=calloc(n,sizeof(Contrat));

@@ -1,7 +1,16 @@
 # depslib dependency file v1.0
-1725579691 source:c:\users\mohse\desktop\solutions_c_workshop\day03\mini-projet\main.c
+1725670011 source:c:\users\mohse\desktop\solutions_c_workshop\day03\mini-projet\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
+	"Contrat.h"
+
+1725669682 source:c:\users\mohse\desktop\solutions_c_workshop\day03\mini-projet\contrat.c
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"Contrat.h"
+
+1725670029 c:\users\mohse\desktop\solutions_c_workshop\day03\mini-projet\contrat.h
 
