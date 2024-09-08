@@ -57,7 +57,6 @@ void Afficher(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int
                 break;
         }
         }
-
      if(trv==0){
         printf("Livre non trouve.\n");
      }
