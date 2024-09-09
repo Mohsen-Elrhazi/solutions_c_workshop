@@ -9,16 +9,23 @@ int main()
   char chaine[40];
   char caractere;
   int i,nbr=0;
+
    printf("Entrer la  chaine: ");
-   gets(chaine);
+   //gets(chaine);
+   scanf("%s",chaine);
    printf("entrer le caractere a chercher: ");
    scanf(" %c",&caractere);
-   //for(i=0;i<=strlen(chaine);i
+
+   // Convertit les caractères en minuscules pour rendre la comparaison insensible à la casse.
+   caractere=tolower(caractere);
+
+   // for(i=0;chaine[i]!='\0';i++) ou  for(i=0;i<strlen(chaine);i++)
    for(i=0;chaine[i]!='\0';i++){
-  //  if(strcasecmp(chaine[i],caractere)==0)
-    if(chaine[i]==caractere)
+        if(tolower(chaine[i])==caractere)
         nbr++;
    }
+
    printf("nombre d'occurrence de %c dans la chaine est: %d\n", caractere,nbr);
     return 0;
+
 }

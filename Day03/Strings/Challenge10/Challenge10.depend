@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1725887483 source:c:\users\mohse\desktop\solutions_c_workshop\day03\strings\challenge10\main.c
+	<stdio.h>
+	<stdlib.h>
+

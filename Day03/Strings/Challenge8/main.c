@@ -13,9 +13,9 @@ int main()
     gets(chaine);
 
     for(i=0;chaine[i]!='\0';i++){
-    chaine[i]=toupper(chaine[i]);
+    chaine[i]=tolower(chaine[i]);
     }
 
-    printf("la chaine en majuscule: %s",chaine);
+    printf("la chaine en miniscule: %s",chaine);
     return 0;
 }

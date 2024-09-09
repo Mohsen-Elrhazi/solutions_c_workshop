@@ -2,20 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main()
-{
+int main() {
     char texte[100];
-    int i ,espace=0, nbr_mot;
-    char help[100];
-    printf("entrer le texte: ");
-    gets(texte);
-    for(i=0;i<=strlen(texte);i++){
-      if(texte[i]==' '){
-        strcpy(help,texte[i]);
-        strcpy(texte[i],texte[i+1]);
-        strcpy(texte[i+1],help);
-      }
+    int i, j = 0;
+
+    printf("Entrer le texte : ");
+    fgets(texte, sizeof(texte), stdin);
+    texte[strcspn(texte, "\n")] = '\0';
+
+    for (i = 0; texte[i] != '\0'; i++) {
+        if (texte[i] != ' ') {
+            texte[j++] = texte[i];
+        }
     }
-    printf("texte sans espace: %s",texte);
+    texte[j] = '\0';
+
+    printf("texte sans espaces : %s\n", texte);
+
     return 0;
 }
