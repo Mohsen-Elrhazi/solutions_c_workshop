@@ -10,7 +10,7 @@ char Titre[40][40];
 char Auteur[40][40];
 float Prix[40];
 int Quantite[40];
-int nbrlivres;
+int nbrlivres ;
 char titreliv[40];
 
 
@@ -158,5 +158,10 @@ void Afficher(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int
 
    /*-----------Nombre total de livres----------- */
    void NombreLivres(char Titre[][40],char Auteur[][40],float Prix[],int Quantite[],int nbrlivres){
-    printf("nombre total de livres est:%d\n",nbrlivres);
+       int i,s;
+       s=0;
+       for(i=0;i< nbrlivres;i++){
+            s+=Quantite[i];
+       }
+    printf("nombre total de livres en stock est:%d\n",s);
    }

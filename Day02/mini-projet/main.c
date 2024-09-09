@@ -24,6 +24,7 @@ int main()
         printf("6:Afficher le nombre total de livres en stock\n");
         printf("7:Tries les livres par le titre\n");
         printf("8:Quitter le programme\n");
+        printf("Entrer votre choix: ");
         scanf("%d",&choix);
         switch(choix){
             case 1:Ajouter(Titre,Auteur,Prix,Quantite,nbrlivres);
