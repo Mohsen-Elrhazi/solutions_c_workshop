@@ -11,6 +11,7 @@ typedef struct Contrat {
 
 // Declaration des variables globales avec extern
 extern Contrat *c;
+Contrat *p,*p1,*p2;
 extern int n, choix;
 extern char nom[30];
 

@@ -5,6 +5,7 @@
 
 // Definition des variables globales
  Contrat *c;
+ Contrat *p,*p1,*p2;
  int n, choix;
  char nom[30];
 
@@ -22,48 +23,37 @@ void Ajouter(Contrat *c,int n){
     }
 }
 
+
+
 /*-----------Afficher les Contacts-----------*/
 void Afficher(Contrat *c,int *n){
-    Contrat *p;
     if (*n==0){
         printf("Aucune contrat disponible.\n");
     }
     else {
     for(p=c;p<c+*n;p++){
-     printf("les infos de contrat %d:\n",p-c+1);
-    printf("nom: %s\n",&p->nom);
-    printf("numero telephone: %s\n",&p->numero_telephone);
-    printf("adresse email: %s\n",&p->adresse_email);
+    printf("Contrat %d: Nom: %s | Telephone: %s | Email: %s\n",p-c+1,p->nom,p->numero_telephone,p->adresse_email);
     }
     }
 }
 
 /*-----------modifier les Contacts-----------*/
-void modifier(Contrat *c,int *n,char *nom){
-    Contrat *p, *p2;
-    int trv=0;
+void modifier(Contrat *c, int *n,  char *nom) {
     for(p=c;p<c+ *n;p++){
         if(strcasecmp(p->nom,nom)==0){
-            trv=1;
-            p2=p;
-            break;
-        }
-    }
-    if(trv==0){
-        printf("le contrat non trouve.\n");
-    }
-        else{
-            printf("entrer le nouveau numero de telephone: ");
-            scanf("%s",&p2->numero_telephone);
-            printf("entrer la nouvelle adresse email: ");
-            scanf("%s",&p2->adresse_email);
+            printf("Entrer le nouveau numero de telephone: ");
+            scanf("%s",&p->numero_telephone);
+            printf("Entrer la nouvelle adresse email: ");
+            scanf("%s",&p->adresse_email);
             printf("Le numero et l'email ont ete modifies.\n");
         }
     }
+    printf("Le contrat n'a pas ete trouve.\n");
+}
+
 
 /*-----------Supprimer un Contact-----------*/
 void supprimer(Contrat *c,int *n,char *nom){
-    Contrat *p,*p2;
     int trv=0;
     for(p=c;p<c+ *n;p++){
         if(strcasecmp(p->nom,nom)==0){
@@ -72,40 +62,32 @@ void supprimer(Contrat *c,int *n,char *nom){
             break;
         }
     }
-
-    if(trv==0){
-        printf("le contrat non trouve.\n");
-    }
-        else{
-                for(p=p2;p<c+*n;p++){
+    if(trv==1){
+            for(p=p2;p<c+*n;p++){
                     *p=*(p+1);
                 }
             *n-=1;
         printf("le contrat a ete supprime.\n");
+    }
+        else{
+            printf("Le contrat n'a pas ete trouve.\n");
         }
 }
 
 /*-----------Rechercher un Contact-----------*/
 void rechercher(Contrat *c,int *n,char *nom){
-    Contrat *p,*p2;
     int trv=0;
     for(p=c;p<c+ *n;p++){
         if(strcasecmp(p->nom,nom)==0){
-            trv=1;
-            p2=p;
+               // Afficher(p,1);
+              trv=1;
+              printf("Contrat %d: Nom: %s | Telephone: %s | Email: %s\n",p-c+1,p->nom,p->numero_telephone,p->adresse_email);
             break;
         }
     }
 
-    if(trv==0){
-        printf("le contrat non trouve.\n");
-    }
-        else{
-                printf("les infos de contrat %d:\n",(p2-c)+1);
-                printf("nom: %s\n",&p2->nom);
-                printf("numero telephone: %s\n",&p2->numero_telephone);
-                printf("adresse email: %s\n",&p2->adresse_email);
-        }
+    if(trv==0)
+            printf("Le contrat n'a pas ete trouve.\n");
 }
 
 /*-----------Trie par nom-----------*/
@@ -113,7 +95,7 @@ void rechercher(Contrat *c,int *n,char *nom){
 void trie(Contrat *c,int n){
     Contrat *p1,*p2;
     Contrat help;
-    for(p1=c;p1<c+n;p1++){
+    for(p1=c;p1<c+(n-1);p1++){
         for(p2=p1+1;p2<c+n;p2++){
         if(strcmp(p1->nom,p2->nom)>0){
            help=*p1;

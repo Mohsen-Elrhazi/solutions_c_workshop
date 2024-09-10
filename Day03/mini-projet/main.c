@@ -6,12 +6,14 @@
 
 int main()
 {
-    printf("Entrer le nombre de contrats: ");
+  printf("Entrer le nombre initial de contrats: ");
     scanf("%d",&n);
     c=calloc(n,sizeof(Contrat));
+     Ajouter(c,n);
+
 
     while(1){
-    printf("------MENU-----\n");
+    printf("------------MENU-----------\n");
      printf("\nQue souhaitez vous faire:\n");
     printf("1:Ajouter un Contact\n");
     printf("2:Modifier un Contact \n");
@@ -20,9 +22,23 @@ int main()
     printf("5:Rechercher un Contact\n");
     printf("6:Trier les Contacts\n");
     printf("7:Quitter le programme\n");
+    printf("entrer votre choix: ");
     scanf("%d",&choix);
     switch(choix){
-    case 1: Ajouter(c,n);
+    case 1:
+        n+=1;
+            c=realloc(c,n*sizeof(Contrat));
+           for(p=c+(n-1);p<c+n;p++){
+            printf("Entrer les infos de contrat %d:\n",p-c+1);
+            printf("Entrer le nom: ");
+            scanf("%s",&p->nom);
+            printf("Entrer le numero de telephone: ");
+            scanf("%s",&p->numero_telephone);
+            printf("Entrer l'adresse email: ");
+            scanf("%s",&p->adresse_email);
+            }
+
+
        break;
     case 2: printf("entrer le nom du contrat a modifier: ");
            scanf("%s",&nom);
