@@ -31,10 +31,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Contrat.c">
-			<Option compilerVar="CC" />
+		<Unit filename="Contact.c">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
 		</Unit>
-		<Unit filename="Contrat.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

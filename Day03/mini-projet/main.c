@@ -2,19 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "Contrat.h"
+#include "Contact.h"
 
 int main()
 {
-  printf("Entrer le nombre initial de contrats: ");
-    scanf("%d",&n);
-    c=calloc(n,sizeof(Contrat));
-     Ajouter(c,n);
-
-
     while(1){
-    printf("------------MENU-----------\n");
-     printf("\nQue souhaitez vous faire:\n");
+    printf("\n-------------MENU------------\n");
+     printf("Que souhaitez vous faire:\n");
     printf("1:Ajouter un Contact\n");
     printf("2:Modifier un Contact \n");
     printf("3:Supprimer un Contact\n");
@@ -24,33 +18,31 @@ int main()
     printf("7:Quitter le programme\n");
     printf("entrer votre choix: ");
     scanf("%d",&choix);
+    printf("-------------------------------\n");
     switch(choix){
     case 1:
+        if (n==0){
+        c=calloc(n=1,sizeof(Contact));
+        Ajouter(c,n);
+        }
+        else {
         n+=1;
-            c=realloc(c,n*sizeof(Contrat));
-           for(p=c+(n-1);p<c+n;p++){
-            printf("Entrer les infos de contrat %d:\n",p-c+1);
-            printf("Entrer le nom: ");
-            scanf("%s",&p->nom);
-            printf("Entrer le numero de telephone: ");
-            scanf("%s",&p->numero_telephone);
-            printf("Entrer l'adresse email: ");
-            scanf("%s",&p->adresse_email);
-            }
-
-
+            c=realloc(c,n*sizeof(Contact));
+            Ajouter(c,n);
+        }
        break;
-    case 2: printf("entrer le nom du contrat a modifier: ");
+    case 2:
+       printf("entrer le nom du contact a modifier: ");
            scanf("%s",&nom);
            modifier(c,&n,&nom);
        break;
-    case 3: printf("entrer le nom du contrat a supprimer: ");
+    case 3: printf("entrer le nom du contact a supprimer: ");
            scanf("%s",&nom);
            supprimer(c,&n,&nom);
        break;
     case 4: Afficher(c,&n);
        break;
-    case 5: printf("entrer le nom du contrat a rechercher: ");
+    case 5: printf("entrer le nom du contact a rechercher: ");
            scanf("%s",&nom);
            rechercher(c,&n,&nom);
        break;
@@ -64,4 +56,5 @@ int main()
     }
     }
     free(c);
+    return 0;
 }
